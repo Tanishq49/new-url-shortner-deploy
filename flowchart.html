@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flowchart</title>
+    <style>
+        /* General body and layout */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Container for the flowchart */
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            width: 70%;
+            height: 80%;
+        }
+
+        /* Card styles */
+        .card {
+            width: 300px;
+            padding: 20px;
+            background-color: #4e89ae;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .card p {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* When the card is open, the paragraph is shown */
+        .card.open p {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Arrow styles between cards */
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #4e89ae;
+            margin-top: -10px;
+        }
+
+        /* Footer styles */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #4e89ae;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Title styles */
+        .title {
+            position: absolute;
+            top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            z-index: 10;
+        }
+
+        .desc {
+            position: absolute;
+            top: 60px;
+            font-size: 18px;
+            color: #555;
+            width: 70%;
+            z-index: 10;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Title and Description -->
+    <div class="title">Interactive URL Shortener Flowchart</div>
+    <div class="desc">Click on each step to expand and see the details about the URL shortening process.</div>
+
+    <!-- Flowchart Container -->
+    <div class="flowchart-container">
+        <!-- User Input Node -->
+        <div class="card" id="userInputCard">
+            <h3>User Inputs URL</h3>
+            <p>
+                The user enters a URL to be shortened. The URL is then validated to ensure it is in the correct format
+                (e.g., http://).
+            </p>
+        </div>
+
+        <!-- Arrow between User Input and Generate Short URL -->
+        <div class="arrow"></div>
+
+        <!-- Generate Short URL Node -->
+        <div class="card" id="generateShortUrlCard">
+            <h3>Generate Short URL</h3>
+            <p>
+                A unique short URL is generated using a random string of characters. This is stored in the database
+                along with the original URL.
+            </p>
+        </div>
+
+        <!-- Arrow between Generate Short URL and Redirect -->
+        <div class="arrow"></div>
+
+        <!-- Redirect Node -->
+        <div class="card" id="redirectCard">
+            <h3>Redirect to Original URL</h3>
+            <p>
+                When the user visits the short URL, they are redirected to the original URL. The visit is logged for
+                analytics purposes.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made with ❤️ by <a href="https://yourwebsite.com" target="_blank">Tanishq Bhandari</a></p>
+    </div>
+
+    <script>
+        // Add event listeners for opening and closing cards
+        const userInputCard = document.getElementById('userInputCard');
+        const generateShortUrlCard = document.getElementById('generateShortUrlCard');
+        const redirectCard = document.getElementById('redirectCard');
+
+        // Toggle the card open/close when clicked
+        userInputCard.addEventListener('click', () => {
+            userInputCard.classList.toggle('open');
+        });
+
+        generateShortUrlCard.addEventListener('click', () => {
+            generateShortUrlCard.classList.toggle('open');
+        });
+
+        redirectCard.addEventListener('click', () => {
+            redirectCard.classList.toggle('open');
+        });
+    </script>
+
+</body>
+
+</html>
